@@ -4,7 +4,7 @@
 #
 # https://github.com/lentiancn/skills/blob/main/LICENSE
 #
-set -eux
+set -eu
 
 ALPINE_RELEASE_BASE_URL="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases"
 
@@ -16,8 +16,8 @@ archs=$(
     | sort
 )
 
-first_arch_json=1
-archs_json=""
+first_release_json=1
+releases_json=""
 
 for arch in $archs; do
     latest_releases_yaml_url="${ALPINE_RELEASE_BASE_URL}/${arch}/latest-releases.yaml"
@@ -30,14 +30,14 @@ for arch in $archs; do
 
     release_file_url="${ALPINE_RELEASE_BASE_URL}/${arch}/${release_file_name}"
 
-    arch_json="{\"version\":\"${release_version}\",\"arch\":\"${arch}\",\"file_url\":\"${release_file_url}\"}"
+    release_json="{\"version\":\"${release_version}\",\"arch\":\"${arch}\",\"file_url\":\"${release_file_url}\"}"
 
-    if [ $first_arch_json -eq 1 ]; then
-        archs_json="$arch_json"
-        first_arch_json=0
+    if [ $first_release_json -eq 1 ]; then
+        releases_json="$release_json"
+        first_release_json=0
     else
-        archs_json="${archs_json},${arch_json}"
+        releases_json="${releases_json},${release_json}"
     fi
 done
 
-echo "[${archs_json}]"
+echo "[${releases_json}]"
