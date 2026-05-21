@@ -1,9 +1,9 @@
 ---
 name: skill-alpine
-description: Get Alpine Linux latest release including version, architectures and download URLs. Trigger when checking Alpine version
+description: Get Alpine Linux latest releases including version, architectures and download URLs. Trigger when checking Alpine version
 ---
 
-# alpine: interface 1 - Get latest releases of Alpine Linux
+# alpine: interface 1 - Get alpine latest releases
 
 ```bash
 latest_releases_json=$(bash scripts/fetch_alpine_latest_releases.sh)
