@@ -6,10 +6,12 @@
 #
 set -euo pipefail
 
+# Arguments
 GIT_REMOTE_URL="$1"
 GIT_BRANCH="$2"
 GIT_LOCAL_PATH="$3"
 
+# Validate required arguments
 if [ -z "$GIT_REMOTE_URL" ]; then
     echo "ERROR: GIT_REMOTE_URL is required. Usage: $0 <GIT_REMOTE_URL> [GIT_BRANCH] <GIT_LOCAL_PATH>"
     exit 1
@@ -19,9 +21,11 @@ if [ -z "$GIT_LOCAL_PATH" ]; then
     exit 1
 fi
 
+# Default branch to 'main' if not specified
 GIT_BRANCH=${GIT_BRANCH:-main}
 
 if [ -d "${GIT_LOCAL_PATH}" ]; then
+    # Directory exists — fetch and pull latest changes
     cd "${GIT_LOCAL_PATH}" || {
         echo "ERROR: Failed to enter directory ${GIT_LOCAL_PATH}. Check: $0"
         exit 1
@@ -30,6 +34,7 @@ if [ -d "${GIT_LOCAL_PATH}" ]; then
     git pull origin "${GIT_BRANCH}"
     echo "SUCCESS: Git update"
 else
+    # Directory doesn't exist — clone the repository
     PARENT_DIR=$(dirname "${GIT_LOCAL_PATH}")
     mkdir -p "${PARENT_DIR}"
     cd "${PARENT_DIR}" || exit

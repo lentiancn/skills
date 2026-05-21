@@ -18,6 +18,7 @@ archs=$(
     | sort
 )
 
+# Arguments
 first_release_json=1
 releases_json=""
 
