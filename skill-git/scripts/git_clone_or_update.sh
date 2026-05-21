@@ -7,9 +7,9 @@
 set -euo pipefail
 
 # Arguments
-GIT_REMOTE_URL="$1"
-GIT_BRANCH="$2"
-GIT_LOCAL_PATH="$3"
+GIT_REMOTE_URL="${1:-}"
+GIT_BRANCH="${2:-main}"
+GIT_LOCAL_PATH="${3:-}"
 
 # Validate required arguments
 if [ -z "$GIT_REMOTE_URL" ]; then
