@@ -6,7 +6,7 @@ description: Get Alpine Linux latest releases including version, architectures a
 # alpine: interface 1 - Get alpine latest releases
 
 ```bash
-latest_releases_json=$(bash scripts/fetch_alpine_latest_releases.sh)
+latest_releases_json=$(bash scripts/alpine_fetch_latest_releases.sh)
 ```
 
 ## Return value (JSON stdout, example)

@@ -4,7 +4,7 @@
 #
 # https://github.com/lentiancn/skills/blob/main/LICENSE
 #
-set -eu
+set -euo pipefail
 
 ALPINE_RELEASE_BASE_URL="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases"
 
