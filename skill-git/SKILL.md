@@ -15,10 +15,15 @@ res=$(bash scripts/git_clone_or_update.sh <GIT_REMOTE_URL> [GIT_BRANCH] <GIT_LOC
 - `[GIT_BRANCH]`: Optional, target branch, default main
 - `<GIT_LOCAL_PATH>`: Required, local storage directory
 
-## Return value (stdout from script)
+## Return value (res=stdout)
+
+**Success:**
 
 - `SUCCESS: Git clone`
 - `SUCCESS: Git update`
+
+**Error:**
+
 - `ERROR: GIT_REMOTE_URL is required...`
 - `ERROR: GIT_LOCAL_PATH is required...`
 - `ERROR: Failed to enter directory...`
