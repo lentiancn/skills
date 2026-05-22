@@ -11,9 +11,9 @@ res=$(bash scripts/git_clone_or_update.sh <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT
 
 ## Input value
 
-- `<GIT_REMOTE_URL>`: Required, remote git repository address
-- `<GIT_LOCAL_PATH>`: Required, local storage directory
-- `[GIT_BRANCH]`: Optional, target branch, default main
+- `GIT_REMOTE_URL`: Required, remote git repository address
+- `GIT_LOCAL_PATH`: Required, local storage directory
+- `GIT_BRANCH`: Optional, target branch, default **main**
 
 ## Return value (res=stdout)
 
