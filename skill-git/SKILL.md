@@ -6,14 +6,14 @@ description: Clone or update a git repository to a local path
 # git: interface 1 - clone or update
 
 ```bash
-res=$(bash scripts/git_clone_or_update.sh <GIT_REMOTE_URL> [GIT_BRANCH] <GIT_LOCAL_PATH>)
+res=$(bash scripts/git_clone_or_update.sh <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH])
 ```
 
 ## Input value
 
 - `<GIT_REMOTE_URL>`: Required, remote git repository address
-- `[GIT_BRANCH]`: Optional, target branch, default main
 - `<GIT_LOCAL_PATH>`: Required, local storage directory
+- `[GIT_BRANCH]`: Optional, target branch, default main
 
 ## Return value (res=stdout)
 

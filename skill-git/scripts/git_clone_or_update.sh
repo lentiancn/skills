@@ -8,8 +8,8 @@ set -euo pipefail
 
 # Arguments
 GIT_REMOTE_URL="${1:-}"
-GIT_BRANCH="${2:-main}"
-GIT_LOCAL_PATH="${3:-}"
+GIT_LOCAL_PATH="${2:-}"
+GIT_BRANCH="${3:-main}"
 
 # Validate required arguments
 if [ -z "$GIT_REMOTE_URL" ]; then
@@ -20,9 +20,6 @@ if [ -z "$GIT_LOCAL_PATH" ]; then
     echo "ERROR: GIT_LOCAL_PATH is required. Usage: $0 <GIT_REMOTE_URL> [GIT_BRANCH> <GIT_LOCAL_PATH>"
     exit 1
 fi
-
-# Default branch to 'main' if not specified
-GIT_BRANCH=${GIT_BRANCH:-main}
 
 if [ -d "${GIT_LOCAL_PATH}" ]; then
     # Directory exists — fetch and pull latest changes
