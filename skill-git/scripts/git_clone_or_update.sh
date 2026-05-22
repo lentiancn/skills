@@ -13,11 +13,11 @@ GIT_BRANCH="${3:-main}"
 
 # Validate required arguments
 if [ -z "$GIT_REMOTE_URL" ]; then
-    echo "ERROR: GIT_REMOTE_URL is required. Usage: $0 <GIT_REMOTE_URL> [GIT_BRANCH] <GIT_LOCAL_PATH>"
+    echo "ERROR: GIT_REMOTE_URL is required. Usage: $0 <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH]"
     exit 1
 fi
 if [ -z "$GIT_LOCAL_PATH" ]; then
-    echo "ERROR: GIT_LOCAL_PATH is required. Usage: $0 <GIT_REMOTE_URL> [GIT_BRANCH> <GIT_LOCAL_PATH>"
+    echo "ERROR: GIT_LOCAL_PATH is required. Usage: $0 <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH>"
     exit 1
 fi
 
