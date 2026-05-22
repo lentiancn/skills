@@ -8,82 +8,70 @@ set -euo pipefail
 
 # Arguments
 DOCKER_IMAGE="${1:-}"
-DOCKER_TAG="${2:-}"
+shift
+DOCKER_TAGS=("$@")
 
 # Validate required arguments
-if [ -z "$DOCKER_IMAGE" ]; then
-    echo "ERROR: DOCKER_IMAGE is required. Usage: $0 <DOCKER_IMAGE> <DOCKER_TAG>"
-    exit 1
-fi
-if [ -z "$DOCKER_TAG" ]; then
-    echo "ERROR: DOCKER_TAG is required. Usage: $0 <DOCKER_IMAGE> <DOCKER_TAG>"
+if [ -z "$DOCKER_IMAGE" ] || [ ${#DOCKER_TAGS[@]} -eq 0 ]; then
+    echo "ERROR: Usage: $0 <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...]"
     exit 1
 fi
 
-IMAGE_TAG="${DOCKER_IMAGE}:${DOCKER_TAG}"
+FINAL_JSON=$(jq -n --arg image "$DOCKER_IMAGE" '{image: $image, tags: []}')
 
-# Inspect manifest (multi-arch metadata + layer digests/sizes); fails if image not found/auth error/network issue
-MANIFEST_JSON=$(docker manifest inspect "${IMAGE_TAG}" 2>&1) || true
-if echo "$MANIFEST_JSON" | grep -q "no such manifest"; then
-  jq -n \
-    --arg image "$DOCKER_IMAGE" \
-    --arg tag "$DOCKER_TAG" \
-    '{
-        image: $image,
-        tags: [
-            {
-                tag: $tag,
-                exists: false,
-                archs: {}
-            }
-        ]
-    }'
-  exit 0
-fi
-if echo "$MANIFEST_JSON" | grep -qi "unauthorized"; then
-  echo "ERROR: authentication required or ${IMAGE_TAG} not found"
-  exit 1
-fi
+for DOCKER_TAG in "${DOCKER_TAGS[@]}"; do
+    IMAGE_TAG="${DOCKER_IMAGE}:${DOCKER_TAG}"
 
-# Determine if this is a Manifest List (has "manifests" field) or a single Manifest
-IS_LIST=$(echo "$MANIFEST_JSON" | jq -r 'has("manifests")')
+    # Inspect manifest (multi-arch metadata + layer digests/sizes); fails if image not found/auth error/network issue
+    MANIFEST_JSON=$(docker manifest inspect "${IMAGE_TAG}" 2>&1) || true
+    if echo "$MANIFEST_JSON" | grep -q "no such manifest"; then
+        # Tag not found
+        TAG_JSON=$(jq -n \
+            --arg tag "$DOCKER_TAG" \
+            '{tag: $tag, exists: false, archs: {}}'
+        )
+    elif echo "$MANIFEST_JSON" | grep -qi "unauthorized"; then
+        # Authentication required
+        echo "ERROR: authentication required or image('$DOCKER_IMAGE') not found" >&2
+        exit 1
+    else
+        IS_LIST=$(echo "$MANIFEST_JSON" | jq -r 'has("manifests")')
 
-if [ "$IS_LIST" = "true" ]; then
-    # For manifest list: extract arch/os/variant as key and size/digest as value
-    ARCHS_JSON=$(echo "$MANIFEST_JSON" | jq '
-        .manifests
-        | map({
-            key: (.platform.os + "/" + .platform.architecture + ("/" + (.platform.variant // "")))
-                 | rtrimstr("/"),
-            value: { size: .size, digest: .digest }
-          })
-        | from_entries
-    ')
-else
-    # For single manifest: extract os/architecture/variant directly
-    ARCHS_JSON=$(echo "$MANIFEST_JSON" | jq '
-        {
-          (.os + "/" + .architecture + ("/" + (.variant // "")))
-          | rtrimstr("/"): {
-            size: .size,
-            digest: .digest
-          }
-        }
-    ')
-fi
+        if [ "$IS_LIST" = "true" ]; then
+            # Multi-arch manifest: extract per-architecture digest and size
+            ARCHS_JSON=$(echo "$MANIFEST_JSON" | jq '
+                .manifests
+                | map({
+                    key: (.platform.os + "/" + .platform.architecture + ("/" + (.platform.variant // "")))
+                         | rtrimstr("/"),
+                    value: { size: .size, digest: .digest }
+                  })
+                | from_entries
+            ')
+        else
+            # Single-arch manifest: extract digest and size directly
+            ARCHS_JSON=$(echo "$MANIFEST_JSON" | jq '
+                {
+                  (.os + "/" + .architecture + ("/" + (.variant // "")))
+                  | rtrimstr("/"): {
+                    size: .size,
+                    digest: .digest
+                  }
+                }
+            ')
+        fi
 
-# Output: { image, tags: [{ tag, exists, archs }] }
-echo "$MANIFEST_JSON" | jq -n \
-    --arg image "$DOCKER_IMAGE" \
-    --arg tag "$DOCKER_TAG" \
-    --argjson archs "$ARCHS_JSON" \
-    '{
-        image: $image,
-        tags: [
-            {
-                tag: $tag,
-                exists: true,
-                archs: $archs
-            }
-        ]
-    }'
+        # Build tag entry with arch metadata
+        TAG_JSON=$(jq -n \
+            --arg tag "$DOCKER_TAG" \
+            --argjson archs "$ARCHS_JSON" \
+            '{tag: $tag, exists: true, archs: $archs}'
+        )
+    fi
+
+    # Append tag entry to final JSON
+    FINAL_JSON=$(echo "$FINAL_JSON" | jq --argjson tag "$TAG_JSON" '.tags += [$tag]')
+done
+
+# Output final JSON
+echo "$FINAL_JSON"

@@ -1,18 +1,18 @@
 ---
 name: skill-docker
-description: Clone or update a git repository to a local path
+description: manifest inspect
 ---
 
 # docker: interface 1 - manifest inspect
 
 ```bash
-manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG>)
+manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...])
 ```
 
 ## Input value
 
 - `DOCKER_IMAGE`: Required, remote git repository address
-- `DOCKER_TAG`: Required, local storage directory
+- `DOCKER_TAG*`: Required, local storage directory
 
 ## Return value (manifest_json=stdout, example only)
 
@@ -22,6 +22,12 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
 {
   "image": "debian",
   "tags": [
+    {
+      "tag": "latest",
+      "exists": true,
+      "archs": {
+      }
+    },
     {
       "tag": "latest",
       "exists": true,
@@ -70,9 +76,8 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
 
 **Error:**
 
-- `ERROR: DOCKER_IMAGE is required...`
-- `ERROR: DOCKER_TAG is required...`
-- `ERROR: Failed to inspect...`
+- `ERROR: Usage: scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...]`
+- `ERROR: authentication required or image('$DOCKER_IMAGE') not found`
 
 ---
 
