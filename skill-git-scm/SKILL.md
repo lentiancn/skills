@@ -1,5 +1,5 @@
 ---
-name: skill-git
+name: skill-git-scm
 description: Clone or update a git repository to a local path
 ---
 
