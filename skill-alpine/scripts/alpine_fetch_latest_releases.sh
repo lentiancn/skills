@@ -25,6 +25,11 @@ releases_json=""
 for arch in $archs; do
     # Fetch the YAML file that lists all latest releases for this architecture.
     latest_releases_yaml_url="${ALPINE_RELEASE_BASE_URL}/${arch}/latest-releases.yaml"
+    # Check if the latest-releases.yaml file is accessible (HTTP 200 OK)
+    if ! curl -sI --connect-timeout 60 --max-time 120 "$latest_releases_yaml_url" | grep -q "HTTP/2 200"; then
+        # If not accessible, skip this architecture
+        continue
+    fi
     latest_releases_yaml=$(curl -s --connect-timeout 60 --max-time 120 "$latest_releases_yaml_url")
 
     # Extract the file name and version for the 'alpine-minirootfs' flavor (the minimal rootfs tarball).
