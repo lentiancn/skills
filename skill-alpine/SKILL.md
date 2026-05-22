@@ -3,7 +3,7 @@ name: skill-alpine
 description: Get Alpine Linux latest releases including version, architectures and download URLs
 ---
 
-# alpine: interface 1 - Get alpine latest releases
+# alpine:interface 1 - Get alpine latest releases
 
 ```bash
 latest_releases_json=$(bash scripts/alpine_fetch_latest_releases.sh)
