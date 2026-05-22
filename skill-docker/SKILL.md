@@ -3,7 +3,7 @@ name: skill-docker
 description: manifest inspect
 ---
 
-# docker: interface 1 - manifest inspect
+# docker:interface 1 - manifest inspect
 
 ```bash
 manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...])
@@ -35,10 +35,6 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
         "linux/amd64": {
           "size": 1021,
           "digest": "sha256:2477d9ee0ead4370c778ce3aa42258a0b07684d1a84ded8f4af518383fbc3f2d"
-        },
-        "unknown/unknown": {
-          "size": 562,
-          "digest": "sha256:6a4b4f615ebaf84ccb5ec504d24281b9af7534322b54d7c1f2584aa70412fa73"
         },
         "linux/arm/v5": {
           "size": 1037,

@@ -3,7 +3,7 @@ name: skill-git-scm
 description: Clone or update a git repository to a local path
 ---
 
-# git: interface 1 - clone or update
+# git:interface 1 - clone or update
 
 ```bash
 res=$(bash scripts/git_clone_or_update.sh <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH])
