@@ -10,7 +10,7 @@ set -euo pipefail
 DOCKER_BUILDER_NAME="${DOCKER_BUILDER_NAME:-}"
 
 # Validate required arguments
-if [ -z "$BUILDER_NAME" ]; then
+if [ -z "${DOCKER_BUILDER_NAME}" ]; then
     echo "ERROR: DOCKER_BUILDER_NAME is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> $0"
     exit 1
 fi

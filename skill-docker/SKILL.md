@@ -6,15 +6,15 @@ description: manifest inspect
 # docker:interface 1 - manifest inspect
 
 ```bash
-manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...])
+result=$(DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) bash scripts/docker_manifest_inspect.sh)
 ```
 
 ## Input value
 
-- `DOCKER_IMAGE`: Required, remote git repository address
-- `DOCKER_TAG*`: Required, local storage directory
+- `DOCKER_IMAGE`: Required, docker image name
+- `DOCKER_TAGS`: Required, image tags array (e.g. TAGS=(1.0.0 latest))
 
-## Return value (manifest_json=stdout, example only)
+## Return value (result, example only)
 
 **Success:**
 
@@ -72,7 +72,7 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
 
 **Error:**
 
-- `ERROR: Usage: scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...]`
+- `ERROR: Usage: DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) scripts/docker_manifest_inspect.sh`
 - `ERROR: authentication required or image('$DOCKER_IMAGE') not found`
 
 ---
@@ -80,15 +80,15 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
 # docker:interface 2 - build init
 
 ```bash
-result=$(BUILDER_NAME=<BUILDER_NAME> BUILD_CONCURRENCY=<BUILD_CONCURRENCY> bash scripts/docker_buildx_init.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOCKER_BUILD_CONCURRENCY> bash scripts/docker_buildx_init.sh)
 ```
 
 ## Input value
 
-- `DOCKER_IMAGE`: Optional, builder name (default: defaultbuilder)
-- `BUILD_CONCURRENCY`: Optional, max parallelism (default: 4)
+- `DOCKER_BUILDER_NAME`: Required, builder name to init (via env)
+- `DOCKER_BUILD_CONCURRENCY`: Optional, max parallelism (default: 2)
 
-## Return value (result=stdout)
+## Return value (result)
 
 **Success:**
 
@@ -99,14 +99,14 @@ result=$(BUILDER_NAME=<BUILDER_NAME> BUILD_CONCURRENCY=<BUILD_CONCURRENCY> bash 
 # docker:interface 3 - build destroy
 
 ```bash
-result=$(BUILDER_NAME=<BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
 ```
 
 ## Input value
 
-- `DOCKER_IMAGE`: Required, builder name to destroy (via env)
+- `DOCKER_BUILDER_NAME`: Required, builder name to destroy (via env)
 
-## Return value (result=stdout)
+## Return value (result)
 
 **Success:**
 
@@ -116,25 +116,28 @@ result=$(BUILDER_NAME=<BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
 
 # docker:interface 4 - build and push
 
-## step 4.1: Call `docker:interface 2` to initialize builder with `BUILDER_NAME=skilldockerbuilder`.
+## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME
+__
+
+## step 4.1: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
 ## step 4.2: Run build and push
 
 ```bash
-output=$(BUILDER_NAME=<BUILDER_NAME> PLATFORM=<PLATFORM> PROVENANCE=<true|false> SBOM=<true|false> \
-  TAGS=(<TAG1> [<TAG2> ...]) BUILD_ARGS=(<ARG1> [<ARG2> ...]) bash scripts/docker_buildx_push.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_PROVENANCE=<true|false> DOCKER_SBOM=<true|false> \
+  DOCKER_IMAGE_TAGS=(<IMAGE_TAG1> [<IMAGE_TAG2> ...]) DOCKER_BUILD_ARGS=(<BUILD_ARG1> [<BUILD_ARG2> ...]) bash scripts/docker_buildx_push.sh)
 ```
 
 ### Input value
 
-- `BUILDER_NAME`: Optional, builder name (default: from env or defaultbuilder)
-- `PLATFORM`: Required, target platforms separated by comma (e.g. linux/amd64,linux/arm64)
-- `TAGS`: Required, image tags array (e.g. TAGS=(myimage:1.0 myimage:latest))
-- `BUILD_ARGS`: Optional, build arguments array (e.g. BUILD_ARGS=(ARG1=val1 ARG2=val2))
-- `PROVENANCE`: Optional, enable provenance attestation (default: false)
-- `SBOM`: Optional, enable SBOM attestation (default: false)
+- `DOCKER_BUILDER_NAME`: Fixed, via `variable __DOCKER_NAME__`
+- `DOCKER_PLATFORM`: Required, target platforms separated by comma (e.g. linux/amd64,linux/arm64)
+- `DOCKER_IMAGE_TAGS`: Required, image tags array (e.g. TAGS=(myimage:1.0.0 myimage:latest))
+- `DOCKER_BUILD_ARGS`: Optional, build arguments array (e.g. BUILD_ARGS=(BUILD_ARG1=val1 BUILD_ARG2=val2))
+- `DOCKER_PROVENANCE`: Optional, enable provenance attestation (default: false)
+- `DOCKER_SBOM`: Optional, enable SBOM attestation (default: false)
 
-### Return value (output=stdout)
+### Return value (result)
 
 **Success:**
 
@@ -142,11 +145,14 @@ output=$(BUILDER_NAME=<BUILDER_NAME> PLATFORM=<PLATFORM> PROVENANCE=<true|false>
 
 **Error:**
 
-- `ERROR: BUILDER_NAME is required. Usage: $0 <BUILDER_NAME>`
-- `ERROR: PLATFORM is required. Usage: $0 <PLATFORM>`
-- `ERROR: At least one tag must be provided via TAGS environment variable`
+-
+`ERROR: DOCKER_BUILDER_NAME is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
+-
+`ERROR: DOCKER_PLATFORM is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
+-
+`ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
 
-## step 4.3: Call `docker:interface 3` to destroy builder with `BUILDER_NAME=skilldockerbuilder`.
+## step 4.3: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
 ---
 

@@ -7,17 +7,16 @@
 set -euo pipefail
 
 # Arguments
-DOCKER_IMAGE="${1:-}"
-shift
-DOCKER_TAGS=("$@")
+DOCKER_IMAGE="${DOCKER_IMAGE:-}"
+DOCKER_TAGS=("${DOCKER_TAGS[@]}")
 
 # Validate required arguments
-if [ -z "$DOCKER_IMAGE" ] || [ ${#DOCKER_TAGS[@]} -eq 0 ]; then
-    echo "ERROR: Usage: $0 <DOCKER_IMAGE> <DOCKER_TAG1> [DOCKER_TAG2 ...]"
+if [ -z "${DOCKER_IMAGE}" ] || [ ${#DOCKER_TAGS[@]} -eq 0 ]; then
+    echo "ERROR: Usage: DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) $0"
     exit 1
 fi
 
-FINAL_JSON=$(jq -n --arg image "$DOCKER_IMAGE" '{image: $image, tags: []}')
+FINAL_JSON=$(jq -n --arg image "${DOCKER_IMAGE}" '{image: $image, tags: []}')
 
 for DOCKER_TAG in "${DOCKER_TAGS[@]}"; do
     IMAGE_TAG="${DOCKER_IMAGE}:${DOCKER_TAG}"
@@ -32,7 +31,7 @@ for DOCKER_TAG in "${DOCKER_TAGS[@]}"; do
         )
     elif echo "$MANIFEST_JSON" | grep -qi "unauthorized"; then
         # Authentication required
-        echo "ERROR: authentication required or image('$DOCKER_IMAGE') not found" >&2
+        echo "ERROR: authentication required or image('${DOCKER_IMAGE}') not found" >&2
         exit 1
     else
         IS_LIST=$(echo "$MANIFEST_JSON" | jq -r 'has("manifests")')
