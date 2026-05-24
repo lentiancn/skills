@@ -77,4 +77,77 @@ manifest_json=$(bash scripts/docker_manifest_inspect.sh <DOCKER_IMAGE> <DOCKER_T
 
 ---
 
+# docker:interface 2 - build init
+
+```bash
+result=$(BUILDER_NAME=<BUILDER_NAME> BUILD_CONCURRENCY=<BUILD_CONCURRENCY> bash scripts/docker_buildx_init.sh)
+```
+
+## Input value
+
+- `DOCKER_IMAGE`: Optional, builder name (default: defaultbuilder)
+- `BUILD_CONCURRENCY`: Optional, max parallelism (default: 4)
+
+## Return value (result=stdout)
+
+**Success:**
+
+- `SUCCESS: initted`
+
+---
+
+# docker:interface 3 - build destroy
+
+```bash
+result=$(BUILDER_NAME=<BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
+```
+
+## Input value
+
+- `DOCKER_IMAGE`: Required, builder name to destroy (via env)
+
+## Return value (result=stdout)
+
+**Success:**
+
+- `SUCCESS: destroyed`
+
+---
+
+# docker:interface 4 - build and push
+
+## step 4.1: Call `docker:interface 2` to initialize builder.
+
+## step 4.2: Run build and push
+
+```bash
+output=$(BUILDER_NAME=<BUILDER_NAME> PLATFORM=<PLATFORM> PROVENANCE=<true|false> SBOM=<true|false> \
+  TAGS=(<TAG1> [<TAG2> ...]) BUILD_ARGS=(<ARG1> [<ARG2> ...]) bash scripts/docker_buildx_push.sh)
+```
+
+### Input value
+
+- `BUILDER_NAME`: Optional, builder name (default: from env or defaultbuilder)
+- `PLATFORM`: Required, target platforms separated by comma (e.g. linux/amd64,linux/arm64)
+- `TAGS`: Required, image tags array (e.g. TAGS=(myimage:1.0 myimage:latest))
+- `BUILD_ARGS`: Optional, build arguments array (e.g. BUILD_ARGS=(ARG1=val1 ARG2=val2))
+- `PROVENANCE`: Optional, enable provenance attestation (default: false)
+- `SBOM`: Optional, enable SBOM attestation (default: false)
+
+### Return value (output=stdout)
+
+**Success:**
+
+- `SUCCESS: Build and push completed successfully`
+
+**Error:**
+
+- `ERROR: BUILDER_NAME is required. Usage: $0 <BUILDER_NAME>`
+- `ERROR: PLATFORM is required. Usage: $0 <PLATFORM>`
+- `ERROR: At least one tag must be provided via TAGS environment variable`
+
+## step 4.3: Call `docker:interface 3` to destroy builder.
+
+---
+
 # More skills: https://github.com/lentiancn/skills

@@ -7,7 +7,7 @@
 set -euo pipefail
 
 # Arguments
-BUILDER_NAME="${1:-}"
+BUILDER_NAME="${BUILDER_NAME:-}"
 
 # Validate required arguments
 if [ -z "$BUILDER_NAME" ]; then
