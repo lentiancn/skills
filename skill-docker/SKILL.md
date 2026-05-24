@@ -116,7 +116,7 @@ result=$(BUILDER_NAME=<BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
 
 # docker:interface 4 - build and push
 
-## step 4.1: Call `docker:interface 2` to initialize builder.
+## step 4.1: Call `docker:interface 2` to initialize builder with `BUILDER_NAME=skilldockerbuilder`.
 
 ## step 4.2: Run build and push
 
@@ -146,7 +146,7 @@ output=$(BUILDER_NAME=<BUILDER_NAME> PLATFORM=<PLATFORM> PROVENANCE=<true|false>
 - `ERROR: PLATFORM is required. Usage: $0 <PLATFORM>`
 - `ERROR: At least one tag must be provided via TAGS environment variable`
 
-## step 4.3: Call `docker:interface 3` to destroy builder.
+## step 4.3: Call `docker:interface 3` to destroy builder with `BUILDER_NAME=skilldockerbuilder`.
 
 ---
 

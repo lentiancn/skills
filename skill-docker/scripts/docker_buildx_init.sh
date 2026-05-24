@@ -7,24 +7,30 @@
 set -euo pipefail
 
 # Arguments
-BUILDER_NAME="${BUILDER_NAME:-defaultbuilder}"
-BUILD_CONCURRENCY="${BUILD_CONCURRENCY:-4}"
+DOCKER_BUILDER_NAME="${DOCKER_BUILDER_NAME:-}"
+DOCKER_BUILD_CONCURRENCY="${DOCKER_BUILD_CONCURRENCY:-4}"
+
+# Validate required arguments
+if [ -z "${DOCKER_BUILDER_NAME}" ]; then
+    echo "ERROR: DOCKER_BUILDER_NAME is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> $0"
+    exit 1
+fi
 
 # Register cross-platform emulators for multi-architecture builds
 docker run --privileged --rm tonistiigi/binfmt:latest --install all
 
 # Remove existing buildx builder instance if it exists
-docker buildx rm "$BUILDER_NAME" 2>/dev/null || true
+docker buildx rm "${DOCKER_BUILDER_NAME}" 2>/dev/null || true
 
 # Clean up all cached Docker buildx resources
 docker buildx prune -a -f 2>/dev/null || true
 
 # Create a new docker-container driver builder with concurrency settings
 docker buildx create \
-    --name "$BUILDER_NAME" \
+    --name "${DOCKER_BUILDER_NAME}" \
     --driver docker-container \
-    --driver-opt env.BUILDKIT_MAX_PARALLELISM="$BUILD_CONCURRENCY" \
-    --driver-opt env.BUILDKIT_CONCURRENCY="$BUILD_CONCURRENCY" \
+    --driver-opt env.BUILDKIT_MAX_PARALLELISM="${DOCKER_BUILD_CONCURRENCY}" \
+    --driver-opt env.BUILDKIT_CONCURRENCY="${DOCKER_BUILD_CONCURRENCY}" \
     --use \
     --platform \
         linux/amd64,\
@@ -38,6 +44,6 @@ docker buildx create \
         linux/s390x
 
 # Bootstrap and verify the builder instance
-docker buildx inspect "$BUILDER_NAME" --bootstrap
+docker buildx inspect "${DOCKER_BUILDER_NAME}" --bootstrap
 
 echo "SUCCESS: initted"
