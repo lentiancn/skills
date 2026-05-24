@@ -20,13 +20,8 @@ fi
 # Register cross-platform emulators for multi-architecture builds
 docker run --privileged --rm tonistiigi/binfmt:latest --install all
 
-# Remove existing buildx builder instance if it exists
-docker buildx rm "${DOCKER_BUILDER_NAME}" 2>/dev/null || true
-
-# Clean up all cached Docker buildx resources
-if [ "${DOCKER_PRUNE_FIRST}" = "true" ]; then
-    docker buildx prune -a -f 2>/dev/null || true
-fi
+# Clean up any existing builder and build cache before initialization
+bash "./docker_buildx_destroy.sh"
 
 # Create a new docker-container driver builder with concurrency settings
 docker buildx create \
