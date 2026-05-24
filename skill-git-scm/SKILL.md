@@ -1,6 +1,8 @@
 ---
 name: skill-git-scm
-description: Clone or update a git repository to a local path
+description: git:interface 1 - clone or update
+# ⚠️ DO NOT MODIFY THIS FILE — maintained via 'openclaw skills update skill-git-scm'
+# Any change may affect the normal operation of the skill.
 ---
 
 # git:interface 1 - clone or update

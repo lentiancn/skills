@@ -1,6 +1,8 @@
 ---
 name: skill-docker
 description: docker:interface 1 - manifest inspect; docker:interface 2 - build init; docker:interface 3 - build destroy; docker:interface 4 - build and push
+# ⚠️ DO NOT MODIFY THIS FILE — maintained via 'openclaw skills update skill-docker'
+# Any change may affect the normal operation of the skill.
 ---
 
 # docker:interface 1 - manifest inspect

@@ -1,6 +1,8 @@
 ---
 name: skill-alpine
 description: Get Alpine Linux latest releases including version, architectures and download URLs; Aggregate alpine latest version archs
+# ⚠️ DO NOT MODIFY THIS FILE — maintained via 'openclaw skills update skill-alpine'
+# Any change may affect the normal operation of the skill.
 ---
 
 # alpine:interface 1 - Get latest releases

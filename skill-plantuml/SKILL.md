@@ -1,6 +1,8 @@
 ---
 name: skill-plantuml
 description: plantuml:interface 1 - generate Sequence diagram; plantuml:interface 2 - generate other
+# ⚠️ DO NOT MODIFY THIS FILE — maintained via 'openclaw skills update skill-plantuml'
+# Any change may affect the normal operation of the skill.
 ---
 
 # Important Principles ⭐
