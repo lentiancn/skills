@@ -7,17 +7,17 @@
 set -euo pipefail
 
 # Arguments
-GIT_REMOTE_URL="${1:-}"
-GIT_LOCAL_PATH="${2:-}"
-GIT_BRANCH="${3:-main}"
+GIT_REMOTE_URL="${GIT_REMOTE_URL:-}"
+GIT_LOCAL_PATH="${GIT_LOCAL_PATH:-}"
+GIT_BRANCH="${GIT_BRANCH:-main}"
 
 # Validate required arguments
 if [ -z "$GIT_REMOTE_URL" ]; then
-    echo "ERROR: GIT_REMOTE_URL is required. Usage: $0 <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH]"
+    echo "ERROR: GIT_REMOTE_URL is required. Usage: GIT_REMOTE_URL=<GIT_REMOTE_URL> GIT_LOCAL_PATH=<GIT_LOCAL_PATH> [GIT_BRANCH=<GIT_BRANCH>] $0"
     exit 1
 fi
 if [ -z "$GIT_LOCAL_PATH" ]; then
-    echo "ERROR: GIT_LOCAL_PATH is required. Usage: $0 <GIT_REMOTE_URL> <GIT_LOCAL_PATH> [GIT_BRANCH>"
+    echo "ERROR: GIT_LOCAL_PATH is required. Usage: GIT_REMOTE_URL=<GIT_REMOTE_URL> GIT_LOCAL_PATH=<GIT_LOCAL_PATH> [GIT_BRANCH=<GIT_BRANCH>] $0"
     exit 1
 fi
 
