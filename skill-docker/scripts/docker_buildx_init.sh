@@ -21,7 +21,7 @@ fi
 docker run --privileged --rm tonistiigi/binfmt:latest --install all
 
 # Clean up any existing builder and build cache before initialization
-bash "./docker_buildx_destroy.sh"
+bash ./docker_buildx_destroy.sh
 
 # Create a new docker-container driver builder with concurrency settings
 docker buildx create \
