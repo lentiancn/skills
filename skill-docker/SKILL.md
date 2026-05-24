@@ -1,6 +1,6 @@
 ---
 name: skill-docker
-description: manifest inspect
+description: docker:interface 1 - manifest inspect; docker:interface 2 - build init; docker:interface 3 - build destroy; docker:interface 4 - build and push
 ---
 
 # docker:interface 1 - manifest inspect
@@ -76,7 +76,7 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOC
 # docker:interface 3 - build destroy
 
 ```bash
-result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_destory.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_destroy.sh)
 ```
 
 ## Input value
@@ -93,7 +93,8 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_de
 
 # docker:interface 4 - build and push
 
-## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME__
+## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME
+__
 
 ## step 4.2: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
