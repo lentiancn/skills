@@ -16,7 +16,7 @@ provided to the user.
 
 refers to docs/sequence-diagram.md
 
---
+---
 
 # plantuml:interface 2 - generate other
 
