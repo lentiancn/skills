@@ -130,7 +130,7 @@ Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFOR
 - `ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. 
 Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
 
-## step 4.4: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
+## step 4.4: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
 
 ---
 
