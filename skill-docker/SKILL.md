@@ -93,13 +93,11 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_de
 
 # docker:interface 4 - build and push
 
-## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME
+## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME__
 
-__
+## step 4.2: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
-## step 4.1: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
-
-## step 4.2: Run build and push
+## step 4.3: Run build and push
 
 ```bash
 result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_PROVENANCE=<true|false> DOCKER_SBOM=<true|false> \
@@ -131,7 +129,7 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATF
 -
 `ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
 
-## step 4.3: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
+## step 4.4: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
 ---
 
