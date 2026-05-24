@@ -9,6 +9,7 @@ set -euo pipefail
 # Arguments
 DOCKER_BUILDER_NAME="${DOCKER_BUILDER_NAME:-}"
 DOCKER_BUILD_CONCURRENCY="${DOCKER_BUILD_CONCURRENCY:-2}"
+DOCKER_PRUNE_FIRST="${DOCKER_PRUNE_FIRST:-false}"
 
 # Validate required arguments
 if [ -z "${DOCKER_BUILDER_NAME}" ]; then
@@ -23,7 +24,9 @@ docker run --privileged --rm tonistiigi/binfmt:latest --install all
 docker buildx rm "${DOCKER_BUILDER_NAME}" 2>/dev/null || true
 
 # Clean up all cached Docker buildx resources
-docker buildx prune -a -f 2>/dev/null || true
+if [ "${DOCKER_PRUNE_FIRST}" = "true" ]; then
+    docker buildx prune -a -f 2>/dev/null || true
+fi
 
 # Create a new docker-container driver builder with concurrency settings
 docker buildx create \

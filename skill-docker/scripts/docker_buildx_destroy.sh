@@ -8,6 +8,7 @@ set -euo pipefail
 
 # Arguments
 DOCKER_BUILDER_NAME="${DOCKER_BUILDER_NAME:-}"
+DOCKER_PRUNE_FIRST="${DOCKER_PRUNE_FIRST:-false}"
 
 # Validate required arguments
 if [ -z "${DOCKER_BUILDER_NAME}" ]; then
@@ -19,6 +20,8 @@ fi
 docker buildx rm "${DOCKER_BUILDER_NAME}" 2>/dev/null || true
 
 # Clean up all cached buildx resources system-wide
-docker buildx prune -a -f 2>/dev/null || true
+if [ "${DOCKER_PRUNE_FIRST}" = "true" ]; then
+    docker buildx prune -a -f 2>/dev/null || true
+fi
 
 echo "SUCCESS: destroyed"

@@ -57,13 +57,14 @@ result=$(DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) bash scri
 # docker:interface 2 - build init
 
 ```bash
-result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOCKER_BUILD_CONCURRENCY> bash scripts/docker_buildx_init.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOCKER_BUILD_CONCURRENCY> DOCKER_PRUNE_FIRST=<DOCKER_PRUNE_FIRST> bash scripts/docker_buildx_init.sh)
 ```
 
 ## Input value
 
 - `DOCKER_BUILDER_NAME`: Required, builder name to init (via env)
 - `DOCKER_BUILD_CONCURRENCY`: Optional, max parallelism (default: 2)
+- `DOCKER_PRUNE_FIRST`: Optional, remove all build cache (including internal/frontend images) (default: false)
 
 ## Return value (result)
 
@@ -76,12 +77,13 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOC
 # docker:interface 3 - build destroy
 
 ```bash
-result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_destroy.sh)
+result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PRUNE_FIRST=<DOCKER_PRUNE_FIRST> bash scripts/docker_buildx_destroy.sh)
 ```
 
 ## Input value
 
 - `DOCKER_BUILDER_NAME`: Required, builder name to destroy (via env)
+- `DOCKER_PRUNE_FIRST`: Optional, remove all build cache (including internal/frontend images) (default: false)
 
 ## Return value (result)
 
@@ -93,10 +95,9 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> bash scripts/docker_buildx_de
 
 # docker:interface 4 - build and push
 
-## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME
-__
+## step 4.1: Ask user: "Confirm to use docker builder 'skilldockerbuilder' ?" Assign the value to variable __DOCKER_NAME__ . Then ask user: "Confirm to remove all build cache (including internal/frontend images) ?" Assign the value to variable __DOCKER_PRUNE_FIRST__
 
-## step 4.2: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
+## step 4.2: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
 
 ## step 4.3: Run build and push
 
@@ -122,13 +123,12 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATF
 
 **Error: (sample only)**
 
--
-
-`ERROR: DOCKER_BUILDER_NAME is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
--
-`ERROR: DOCKER_PLATFORM is required. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
--
-`ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
+- `ERROR: DOCKER_BUILDER_NAME is required. 
+Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
+- `ERROR: DOCKER_PLATFORM is required. 
+Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
+- `ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. 
+Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
 
 ## step 4.4: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_NAME__`.
 
