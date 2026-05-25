@@ -14,6 +14,10 @@ Refer to ./alipay.open.sp.inteop.order.confirm.md
 
 Refer to ./alipay.open.sp.inteop.order.create.md
 
+# alipay.open.sp.inteop.order.query (服务商一体化开通作业查询业务开通单)
+
+Refer to ./alipay.open.sp.inteop.order.query.md
+
 # alipay.open.sp.inteop.product.create (服务商一体化开通作业添加产品开通项)
 
 Refer to ./alipay.open.sp.inteop.product.create.md
