@@ -1,4 +1,16 @@
 
+# alipay.open.agent.common.sign (代签约产品通用接口)
+
+Refer to ./alipay.open.agent.common.sign.md
+
+# alipay.open.agent.commonsign.confirm (代商户签约，提交信息确认接口)
+
+Refer to ./alipay.open.agent.commonsign.confirm.md
+
+# alipay.open.agent.create (开启代商户签约、创建应用事务)
+
+Refer to ./alipay.open.agent.create.md
+
 # alipay.open.agent.signstatus.query (查询商户某个产品的签约状态)
 
 Refer to ./alipay.open.agent.signstatus.query.md
@@ -38,3 +50,16 @@ Refer to ./alipay.open.sp.inteop.settle.create.md
 # alipay.open.sp.inteop.sync.notify (服务商一体化作业消息通知)
 
 Refer to ./alipay.open.sp.inteop.sync.notify.md
+
+# ant.merchant.expand.bizaccess.order.check (业务开通准入预校验)
+
+Refer to ./ant.merchant.expand.bizaccess.order.check.md
+
+# ant.merchant.expand.bizaccess.order.create (发起业务开通)
+
+Refer to ./ant.merchant.expand.bizaccess.order.create.md
+
+# ant.merchant.expand.bizaccess.order.query (开通进度主动查询)
+
+Refer to ./ant.merchant.expand.bizaccess.order.query.md
+
