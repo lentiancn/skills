@@ -6,6 +6,10 @@ Refer to ./alipay.open.file.upload.md
 
 Refer to ./alipay.open.sp.inteop.appauth.create.md
 
+# alipay.open.sp.inteop.order.confirm (服务商一体化开通作业子项合并提交)
+
+Refer to ./alipay.open.sp.inteop.order.confirm.md
+
 # alipay.open.sp.inteop.order.create (服务商一体化作业主单创建)
 
 Refer to ./alipay.open.sp.inteop.order.create.md
