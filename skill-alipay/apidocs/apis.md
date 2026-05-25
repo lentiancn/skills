@@ -1,4 +1,3 @@
-
 # alipay.open.agent.common.sign (代签约产品通用接口)
 
 Refer to ./alipay.open.agent.common.sign.md
@@ -11,9 +10,17 @@ Refer to ./alipay.open.agent.commonsign.confirm.md
 
 Refer to ./alipay.open.agent.create.md
 
+# alipay.open.agent.order.query (查询申请单状态)
+
+Refer to ./alipay.open.agent.order.query.md
+
 # alipay.open.agent.signstatus.query (查询商户某个产品的签约状态)
 
 Refer to ./alipay.open.agent.signstatus.query.md
+
+# alipay.open.auth.token.app (换取应用授权令牌)
+
+Refer to ./alipay.open.auth.token.app.md
 
 # alipay.open.file.upload (支付宝文件上传接口)
 
@@ -51,6 +58,10 @@ Refer to ./alipay.open.sp.inteop.settle.create.md
 
 Refer to ./alipay.open.sp.inteop.sync.notify.md
 
+# ant.merchant.expand.bizaccess.order.cancel (开通进度主动撤销)
+
+Refer to ./ant.merchant.expand.bizaccess.order.cancel.md
+
 # ant.merchant.expand.bizaccess.order.check (业务开通准入预校验)
 
 Refer to ./ant.merchant.expand.bizaccess.order.check.md
@@ -63,3 +74,6 @@ Refer to ./ant.merchant.expand.bizaccess.order.create.md
 
 Refer to ./ant.merchant.expand.bizaccess.order.query.md
 
+# ant.merchant.expand.indirect.image.upload (图片上传)
+
+Refer to ./ant.merchant.expand.indirect.image.upload.md
