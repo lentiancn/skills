@@ -1,3 +1,8 @@
+
+# alipay.open.agent.signstatus.query (查询商户某个产品的签约状态)
+
+Refer to ./alipay.open.agent.signstatus.query.md
+
 # alipay.open.file.upload (支付宝文件上传接口)
 
 Refer to ./alipay.open.file.upload.md
@@ -5,6 +10,10 @@ Refer to ./alipay.open.file.upload.md
 # alipay.open.sp.inteop.appauth.create (服务商一体化开通作业添加代调用授权项)
 
 Refer to ./alipay.open.sp.inteop.appauth.create.md
+
+# alipay.open.sp.inteop.order.cancel (服务商一体化作业取消业务开通单)
+
+Refer to ./alipay.open.sp.inteop.order.cancel.md
 
 # alipay.open.sp.inteop.order.confirm (服务商一体化开通作业子项合并提交)
 

@@ -4,8 +4,6 @@
 
 **文档地址**：https://opendocs.alipay.com/isv/4308c1bb_alipay.open.sp.inteop.order.query
 
-**更新时间**：2026-01-09
-
 ### 公共请求参数
 
 | 参数 | 类型 | 必填 | 说明 |
