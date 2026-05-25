@@ -34,3 +34,7 @@ Refer to ./alipay.open.sp.inteop.product.create.md
 # alipay.open.sp.inteop.settle.create (服务商一体化开通作业添加入驻开通项)
 
 Refer to ./alipay.open.sp.inteop.settle.create.md
+
+# alipay.open.sp.inteop.sync.notify (服务商一体化作业消息通知)
+
+Refer to ./alipay.open.sp.inteop.sync.notify.md
