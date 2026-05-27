@@ -19,35 +19,35 @@ Example: `participant Participant1 as Foo << p >> #lightBlue`
 
 **participant**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `participant` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `participant` and `<color>` with `#ADD8E6` .
 
 **actor**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `actor` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `actor` and `<color>` with `#FF9A80` .
 
 **boundary**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `boundary` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `boundary` and `<color>` with `#9FA8DA` .
 
 **control**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `control` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `control` and `<color>` with `#66C9BF` .
 
 **entity**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `entity` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `entity` and `<color>` with `#FFE57F` .
 
 **database**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `database` and `<color>` with `#A9DFBF` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `database` and `<color>` with `#8FC991` .
 
 **collections**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `collections` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `collections` and `<color>` with `#82ACE2` .
 
 **queue**:
 
-- Syntax: Use `### Participant Syntax` to replace `<participant>` with `queue` and `<color>` with `#F9E79F` .
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `queue` and `<color>` with `#FFC870` .
 
 ## Sequence Diagram Specification
 
