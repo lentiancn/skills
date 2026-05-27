@@ -10,7 +10,8 @@ description: plantuml:sequence diagram syntax; plantuml:other syntax
 The generated PlantUML code must be saved as a .puml file(Encoding: UTF-8), and the absolute path of the file must be
 provided to the user.
 
-**Default save directory:** `plantuml-draft` in your workspace/
+**Default save directory**: `plantuml-draft` in your workspace/
+**Mandatory syntax**: See `plantuml:sequence diagram syntax` and `plantuml:other syntax`
 
 ---
 
