@@ -1,5 +1,7 @@
 # Sequence diagram
 
+## Usage
+
 [PlantUML Sequence Diagram](https://plantuml.com/en/sequence-diagram)
 
 ## Sequence Diagram Specification
@@ -25,6 +27,7 @@
 **box Rules**:
 
 - Set default background color of `box` to `#LightBlue`.
+- Background color goes **after** the box title, e.g., `box box_title #LightBlue`, not `box #LightBlue box_title`.
 - If the box contains changes such as business logic judgments and branches, use `#FFB6C1` instead of `#LightBlue`.
 
 **participant Rules**:
