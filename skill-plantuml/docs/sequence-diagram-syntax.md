@@ -13,7 +13,7 @@ Usage: `<participant> <name> [as <alias>] [<< <Stereotypes> >>] [order <order>] 
 - `<alias>`: Alias of participant (optional)
 - `<Stereotypes>`: Stereotypes to participant (optional)
 - `<order>`: Order of participant (optional)
-- `<color>`: Participant color (optional)
+- `<color>`: Participant color. Participant inside a `box` shall not inherit the box's color (optional)
 
 Example: `participant Participant1 as Foo << p >> #lightBlue`
 
