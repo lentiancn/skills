@@ -1,8 +1,53 @@
-# Sequence diagram
+# Sequence Diagram Syntax
 
-## Usage
+## Supported colors
 
-[PlantUML Sequence Diagram](https://plantuml.com/en/sequence-diagram)
+## Supported keywords
+
+### Participant Syntax
+
+Usage: `<participant> <name> [as <alias>] [<< <Stereotypes> >>] [order <order>] [<color>]`
+
+- `<participant>`: Participant type (required)
+- `<name>`: Participant name (required)
+- `<alias>`: Alias of participant (optional)
+- `<Stereotypes>`: Stereotypes to participant (optional)
+- `<order>`: Order of participant (optional)
+- `<color>`: Participant color (optional)
+
+Example: `participant Participant1 as Foo << p >> #lightBlue`
+
+**participant**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `participant` and `<color>` with `#F9E79F` .
+
+**actor**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `actor` and `<color>` with `#F9E79F` .
+
+**boundary**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `boundary` and `<color>` with `#F9E79F` .
+
+**control**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `control` and `<color>` with `#F9E79F` .
+
+**entity**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `entity` and `<color>` with `#F9E79F` .
+
+**database**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `database` and `<color>` with `#A9DFBF` .
+
+**collections**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `collections` and `<color>` with `#F9E79F` .
+
+**queue**:
+
+- Syntax: Use `### Participant Syntax` to replace `<participant>` with `queue` and `<color>` with `#F9E79F` .
 
 ## Sequence Diagram Specification
 
@@ -15,11 +60,8 @@
 - Use `activate`/`deactivate` to display participant activation status during calls between
   participants
 
-**actor Rules**:
+**database Rules**:
 
-- Set default background color of `actor` to `#Orange`.
-  **database Rules**:
-- Set default background color of `database` to `#LightGreen`.
 - Requests to the database must include the table name (e.g., `SELECT * FROM xxx` or `INSERT INTO xxx`) to indicate
   which
   table is being accessed.
@@ -42,3 +84,7 @@
 **arrow Rules**:
 
 - Use the `-[#color]>` syntax to change the arrow color.
+
+## Sequence Diagram Usage
+
+[PlantUML Sequence Diagram](https://plantuml.com/en/sequence-diagram)
