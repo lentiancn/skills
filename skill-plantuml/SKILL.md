@@ -1,6 +1,6 @@
 ---
 name: skill-plantuml
-description: "plantuml:sequence diagram syntax; plantuml:other syntax"
+description: "plantuml:sequence diagram; plantuml:other diagram"
 ---
 
 # Important Principles ⭐
