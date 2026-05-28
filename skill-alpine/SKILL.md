@@ -1,6 +1,6 @@
 ---
 name: skill-alpine
-description: alpine:interface 1 - get latest releases; alpine:interface 2 - aggregate latest version archs
+description: "alpine:interface 1 - get latest releases; alpine:interface 2 - aggregate latest version archs"
 # ⚠️ DO NOT MODIFY ANY FILES UNDER skill-alpine — maintained via 'openclaw skills update skill-alpine'
 # Any change may affect the normal operation of the skill.
 ---

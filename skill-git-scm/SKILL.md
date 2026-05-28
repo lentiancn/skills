@@ -1,6 +1,6 @@
 ---
 name: skill-git-scm
-description: git:interface 1 - clone or update
+description: "git:interface 1 - clone or update"
 # ⚠️ DO NOT MODIFY ANY FILES UNDER skill-git-scm — maintained via 'openclaw skills update skill-git-scm'
 # Any change may affect the normal operation of the skill.
 ---

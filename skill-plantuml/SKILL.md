@@ -1,6 +1,6 @@
 ---
 name: skill-plantuml
-description: plantuml:sequence diagram syntax; plantuml:other syntax
+description: "plantuml:sequence diagram syntax; plantuml:other syntax"
 # ⚠️ DO NOT MODIFY ANY FILES UNDER skill-plantuml — maintained via 'openclaw skills update skill-plantuml'
 # Any change may affect the normal operation of the skill.
 ---
