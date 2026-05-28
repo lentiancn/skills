@@ -15,7 +15,7 @@ description: "plantuml:sequence diagram syntax; plantuml:other syntax"
 
 ---
 
-# plantuml:sequence diagram syntax
+# plantuml:sequence diagram syntax (See `terminology:sequence diagram` in `skill-terminology` (if found))
 
 See `references/sequence-diagram-syntax.md`
 
