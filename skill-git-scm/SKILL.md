@@ -1,8 +1,13 @@
 ---
 name: skill-git-scm
 description: "git:interface 1 - clone or update"
-# ⚠️ DO NOT MODIFY ANY FILES UNDER skill-git-scm — maintained via 'openclaw skills update skill-git-scm'
-# Any change may affect the normal operation of the skill.
+---
+
+# Important Principles ⭐
+
+**Modification Restriction (Mandatory)**: Do not modify any files under `skill-git-scm`. This skill is maintained via
+`openclaw skills update skill-git-scm`; any alterations will disrupt its normal operation.
+
 ---
 
 # git:interface 1 - clone or update
