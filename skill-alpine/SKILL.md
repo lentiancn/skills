@@ -1,11 +1,11 @@
 ---
 name: skill-alpine
-description: alpine:interface 1 - Get latest releases; alpine:interface 2 - Aggregate latest version archs
+description: alpine:interface 1 - get latest releases; alpine:interface 2 - aggregate latest version archs
 # ⚠️ DO NOT MODIFY ANY FILES UNDER skill-alpine — maintained via 'openclaw skills update skill-alpine'
 # Any change may affect the normal operation of the skill.
 ---
 
-# alpine:interface 1 - Get latest releases
+# alpine:interface 1 - get latest releases
 
 ```bash
 latest_releases_json=$(bash scripts/alpine_fetch_latest_releases.sh)
@@ -30,7 +30,7 @@ latest_releases_json=$(bash scripts/alpine_fetch_latest_releases.sh)
 
 ---
 
-# alpine:interface 2 - Aggregate latest version archs
+# alpine:interface 2 - aggregate latest version archs
 
 ```bash
 latest_version_archs_json=$(bash scripts/alpine_aggregate_latest_version_archs.sh)
