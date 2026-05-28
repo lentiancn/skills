@@ -1,8 +1,13 @@
 ---
 name: skill-alpine
 description: "alpine:interface 1 - get latest releases; alpine:interface 2 - aggregate latest version archs"
-# ⚠️ DO NOT MODIFY ANY FILES UNDER skill-alpine — maintained via 'openclaw skills update skill-alpine'
-# Any change may affect the normal operation of the skill.
+---
+
+# Important Principles ⭐
+
+**Modification Restriction (Mandatory)**: Do not modify any files under `skill-alpine`. This skill is maintained via
+`openclaw skills update skill-alpine`; any alterations will disrupt its normal operation.
+
 ---
 
 # alpine:interface 1 - get latest releases
