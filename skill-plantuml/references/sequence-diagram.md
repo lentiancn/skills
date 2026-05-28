@@ -5,7 +5,7 @@
 Usage: `<participant> <name> [as <alias>] [<< <Stereotypes> >>] [order <order>] [<color>]`
 
 - `<participant>`: Participant type (required)
-- `<name>`: Participant name (required)
+- `<name>`: Participant name. Must not be identical to `<participant>` (required)
 - `<alias>`: Alias of participant (optional)
 - `<Stereotypes>`: Stereotypes to participant (optional)
 - `<order>`: Order of participant (optional)
