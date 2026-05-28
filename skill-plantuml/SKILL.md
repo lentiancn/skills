@@ -15,13 +15,13 @@ description: "plantuml:sequence diagram syntax; plantuml:other syntax"
 
 ---
 
-# plantuml:sequence diagram syntax (See `terminology:sequence diagram` in `skill-terminology` (if found))
+# plantuml:sequence diagram (See `terminology:sequence diagram` in `skill-terminology` (if found))
 
-See `references/sequence-diagram-syntax.md`
+See `references/sequence-diagram.md`
 
 ---
 
-# plantuml:other syntax
+# plantuml:other diagram
 
 See `https://plantuml.com/en/`
 
