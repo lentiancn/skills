@@ -1,6 +1,6 @@
 ---
 name: skill-docker
-description: "docker:interface 1 - manifest inspect; docker:interface 2 - build init; docker:interface 3 - build destroy; docker:interface 4 - build and push"
+description: "skill-docker:interface-01 - manifest inspect; skill-docker:interface-02 - build init; skill-docker:interface-03 - build destroy; skill-docker:interface-04 - build and push"
 ---
 
 # Important Principles ⭐
@@ -10,7 +10,7 @@ description: "docker:interface 1 - manifest inspect; docker:interface 2 - build 
 
 ---
 
-# docker:interface 1 - manifest inspect
+# `skill-docker:interface-01` - manifest inspect
 
 ```bash
 result=$(DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) bash scripts/docker_manifest_inspect.sh)
@@ -61,7 +61,7 @@ result=$(DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) bash scri
 
 ---
 
-# docker:interface 2 - build init
+# skill-docker:interface-02 - build init
 
 ```bash
 result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOCKER_BUILD_CONCURRENCY> DOCKER_PRUNE_FIRST=<DOCKER_PRUNE_FIRST> bash scripts/docker_buildx_init.sh)
@@ -81,7 +81,7 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_BUILD_CONCURRENCY=<DOC
 
 ---
 
-# docker:interface 3 - build destroy
+# skill-docker:interface-03 - build destroy
 
 ```bash
 result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PRUNE_FIRST=<DOCKER_PRUNE_FIRST> bash scripts/docker_buildx_destroy.sh)
@@ -100,11 +100,11 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PRUNE_FIRST=<DOCKER_PR
 
 ---
 
-# docker:interface 4 - build and push
+# skill-docker:interface-04 - build and push
 
-## step 4.1: If the `DOCKER_BUILDER_NAME` is not provided, ask user with "Confirm to use docker builder 'skilldockerbuilder' ?" to obtain the value, then assign the value to variable __DOCKER_BUILDER_NAME__ . Then ask user with "Confirm to remove all build cache (including internal/frontend images) ?", then assign the value to variable __DOCKER_PRUNE_FIRST__
+## `skill-docker:step-0401` - If the `DOCKER_BUILDER_NAME` is not provided, ask user with "Confirm to use docker builder 'skilldockerbuilder' ?" to obtain the value, then assign the value to variable __DOCKER_BUILDER_NAME__ . Then ask user with "Confirm to remove all build cache (including internal/frontend images) ?", then assign the value to variable __DOCKER_PRUNE_FIRST__
 
-## step 4.2: Call `docker:interface 2` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
+## skill-docker:step-0402 Call `skill-docker:interface-02` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
 
 ## step 4.3: Run build and push
 
@@ -137,7 +137,7 @@ Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFOR
 - `ERROR: At least one tag must be provided via DOCKER_IMAGE_TAGS environment variable. 
 Usage: DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_IMAGE_TAGS=<DOCKER_IMAGE_TAGS> $0`
 
-## step 4.4: Call `docker:interface 3` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
+## step 4.4: Call `skill-docker:interface-03` to destroy builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
 
 ---
 
