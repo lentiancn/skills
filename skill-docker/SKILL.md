@@ -10,7 +10,7 @@ description: "skill-docker:interface-01 - manifest inspect; skill-docker:interfa
 
 ---
 
-# `skill-docker:interface-01` - manifest inspect
+# skill-docker:interface-01 - manifest inspect
 
 ```bash
 result=$(DOCKER_IMAGE=<DOCKER_IMAGE> DOCKER_TAGS=(<TAG1> [<TAG2> ...]) bash scripts/docker_manifest_inspect.sh)
@@ -102,11 +102,11 @@ result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PRUNE_FIRST=<DOCKER_PR
 
 # skill-docker:interface-04 - build and push
 
-## `skill-docker:step-0401` - If the `DOCKER_BUILDER_NAME` is not provided, ask user with "Confirm to use docker builder 'skilldockerbuilder' ?" to obtain the value, then assign the value to variable __DOCKER_BUILDER_NAME__ . Then ask user with "Confirm to remove all build cache (including internal/frontend images) ?", then assign the value to variable __DOCKER_PRUNE_FIRST__
+## skill-docker:step-0401 - If the `DOCKER_BUILDER_NAME` is not provided, ask user with "Confirm to use docker builder 'skilldockerbuilder' ?" to obtain the value, then assign the value to variable __DOCKER_BUILDER_NAME__ . Then ask user with "Confirm to remove all build cache (including internal/frontend images) ?", then assign the value to variable __DOCKER_PRUNE_FIRST__
 
-## skill-docker:step-0402 Call `skill-docker:interface-02` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
+## skill-docker:step-0402 - Call `skill-docker:interface-02` to initialize builder with `DOCKER_BUILDER_NAME=variable __DOCKER_BUILDER_NAME__` and with `DOCKER_PRUNE_FIRST=__DOCKER_PRUNE_FIRST__`.
 
-## step 4.3: Run build and push
+## skill-docker:step-0403 - Run build and push
 
 ```bash
 result=$(DOCKER_BUILDER_NAME=<DOCKER_BUILDER_NAME> DOCKER_PLATFORM=<DOCKER_PLATFORM> DOCKER_PROVENANCE=<DOCKER_PROVENANCE> DOCKER_SBOM=<DOCKER_SBOM> \
